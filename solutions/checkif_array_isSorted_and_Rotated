@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+    // check if arr is sorted and rotated
+    //rotated conditon: B[i] == A[(i+x)% A.length)]
+
+    vector <int> original = nums;
+    sort(original.begin(),original.end());
+
+    for(int x = 0 ; x < nums.size(); x++){ // outer loop to check for each x
+
+        bool ok = true;
+        for (int i = 0; i < nums.size(); i++) {
+            if (original[i] != nums[(i + x) % nums.size()]) {
+                ok = false;
+                break;   // ← exit on first mismatch
+            }
+        }
+        if (ok == true) return true;
+
+    }
+
+    return false;
+    }
+};
